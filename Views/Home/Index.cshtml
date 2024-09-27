@@ -1,0 +1,201 @@
+﻿@model dynamic
+
+<h1>Gestión de Modelos</h1>
+
+<!-- Sección para Persona -->
+<h2>Personas</h2>
+<a asp-controller="Persona" asp-action="Create">Crear Nueva Persona</a>
+<table>
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Email</th>
+            <th>Nombre</th>
+            <th>Teléfono</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var persona in Model.Personas)
+        {
+            <tr>
+                <td>@persona.Codigo</td>
+                <td>@persona.Email</td>
+                <td>@persona.Nombre</td>
+                <td>@persona.Telefono</td>
+                <td>
+                    <a asp-controller="Persona" asp-action="Edit" asp-route-codigo="@persona.Codigo">Editar</a>
+                    <a asp-controller="Persona" asp-action="Delete" asp-route-codigo="@persona.Codigo">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Sección para Factura -->
+<h2>Facturas</h2>
+<a asp-controller="Factura" asp-action="Create">Crear Nueva Factura</a>
+<table>
+    <thead>
+        <tr>
+            <th>Fecha</th>
+            <th>Número</th>
+            <th>Total</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var factura in Model.Facturas)
+        {
+            <tr>
+                <td>@factura.Fecha.ToShortDateString()</td>
+                <td>@factura.Numero</td>
+                <td>@factura.Total</td>
+                <td>
+                    <a asp-controller="Factura" asp-action="Edit" asp-route-numero="@factura.Numero">Editar</a>
+                    <a asp-controller="Factura" asp-action="Delete" asp-route-numero="@factura.Numero">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Sección para Producto -->
+<h2>Productos</h2>
+<a asp-controller="Producto" asp-action="Create">Crear Nuevo Producto</a>
+<table>
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Nombre</th>
+            <th>Stock</th>
+            <th>Valor Unitario</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var producto in Model.Productos)
+        {
+            <tr>
+                <td>@producto.Codigo</td>
+                <td>@producto.Nombre</td>
+                <td>@producto.Stock</td>
+                <td>@producto.ValorUnitario</td>
+                <td>
+                    <a asp-controller="Producto" asp-action="Edit" asp-route-codigo="@producto.Codigo">Editar</a>
+                    <a asp-controller="Producto" asp-action="Delete" asp-route-codigo="@producto.Codigo">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Sección para Vendedor -->
+<h2>Vendedores</h2>
+<a asp-controller="Vendedor" asp-action="Create">Crear Nuevo Vendedor</a>
+<table>
+    <thead>
+        <tr>
+            <th>Carnet</th>
+            <th>Dirección</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var vendedor in Model.Vendedores)
+        {
+            <tr>
+                <td>@vendedor.Carnet</td>
+                <td>@vendedor.Direccion</td>
+                <td>
+                    <a asp-controller="Vendedor" asp-action="Edit" asp-route-carnet="@vendedor.Carnet">Editar</a>
+                    <a asp-controller="Vendedor" asp-action="Delete" asp-route-carnet="@vendedor.Carnet">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Sección para Credito -->
+<h2>Créditos</h2>
+<a asp-controller="Credito" asp-action="Create">Crear Nuevo Crédito</a>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Valor</th>
+            <th>Interés</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var credito in Model.Creditos)
+        {
+            <tr>
+                <td>@credito.Id</td>
+                <td>@credito.Valor</td>
+                <td>@credito.Interes</td>
+                <td>
+                    <a asp-controller="Credito" asp-action="Edit" asp-route-id="@credito.Id">Editar</a>
+                    <a asp-controller="Credito" asp-action="Delete" asp-route-id="@credito.Id">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Sección para ProductoPorFactura -->
+<h2>Productos por Factura</h2>
+<a asp-controller="ProductoPorFactura" asp-action="Create">Crear Nuevo Producto por Factura</a>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Factura ID</th>
+            <th>Producto ID</th>
+            <th>Cantidad</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var productoPorFactura in Model.ProductosPorFactura)
+        {
+            <tr>
+                <td>@productoPorFactura.Id</td>
+                <td>@productoPorFactura.FacturaId</td>
+                <td>@productoPorFactura.ProductoId</td>
+                <td>@productoPorFactura.Cantidad</td>
+                <td>
+                    <a asp-controller="ProductoPorFactura" asp-action="Edit" asp-route-id="@productoPorFactura.Id">Editar</a>
+                    <a asp-controller="ProductoPorFactura" asp-action="Delete" asp-route-id="@productoPorFactura.Id">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Sección para Empresa -->
+<h2>Empresas</h2>
+<a asp-controller="Empresa" asp-action="Create">Crear Nueva Empresa</a>
+<table>
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Nombre</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var empresa in Model.Empresas)
+        {
+            <tr>
+                <td>@empresa.Codigo</td>
+                <td>@empresa.Nombre</td>
+                <td>
+                    <a asp-controller="Empresa" asp-action="Edit" asp-route-codigo="@empresa.Codigo">Editar</a>
+                    <a asp-controller="Empresa" asp-action="Delete" asp-route-codigo="@empresa.Codigo">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
